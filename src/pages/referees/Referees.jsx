@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Col, Row} from 'react-bootstrap'
-import { FaPlus, FaRegTrashAlt } from 'react-icons/fa'
+import { Card, Col, ListGroup, Row } from 'react-bootstrap'
+import { FaEdit, FaPlus, FaRegTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Box from '../../components/Box'
-import ShowCanvasForTeams from '../../components/ShowCanvasForTeams'
-import TeamsService from '../../services/teams/TeamsService'
 import Button from 'react-bootstrap/Button'
-import image from '../../img/cbf-1.svg'
+import image from '../../img/apito.png'
+import RefereesService from '../../services/referees/RefereesService'
+import { NavLink } from 'react-router-dom'
 
 
-const Teams = () => {
+const Referees = () => {
 
-    const [teams, setTeams] = useState([])
+    const [referees, setReferees] = useState([])
 
     useEffect(() => {
-        const teams = TeamsService.getAll()
-        setTeams(teams)
+        const referees = RefereesService.getAll()
+        setReferees(referees)
     }, [])
 
     function excluir(idx) {
         if (window.confirm('Deseja realmente excluir o registro?')) {
-            TeamsService.delete(idx)
-            setTeams(TeamsService.getAll())
+            RefereesService.delete(idx)
+            setReferees(RefereesService.getAll())
         }
     }
 
@@ -29,28 +29,66 @@ const Teams = () => {
 
     return (
         <>
-            <Box title="Times" >
+            <Box title="Equipes de Arbitragem" >
                 <Row xs={1} md={4} className="g-4">
-                    {teams.map((team, idx) => (
+                    {referees.map((referee, idx) => (
 
                         <Col>
                             <Card>
-                                <Card.Img variant="top" height={150} src={image} />
+                                <Card.Img variant="top" height={170} src={image} />
                                 <Card.Body>
-                                    <Card.Title className='text-center'>{team.nome}</Card.Title>
+                                    <Card.Title className='text-center'>{`Equipe de Arbitragem ` + (idx+1)}</Card.Title>
+                                    <ListGroup as="ol">
+                                        <ListGroup.Item
+                                            as="li"
+                                            className="d-flex justify-content-between align-items-start text-center"
+                                        >
+                                            <div className="ms-auto me-auto">
+                                                <div className="fw-bold">{referee.arbitro}</div>
+                                                Árbritro Principal
+                                            </div>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item
+                                            as="li"
+                                            className="d-flex justify-content-between align-items-start text-center"
+                                        >
+                                            <div className="ms-auto me-auto">
+                                                <div className="fw-bold ">{referee.bandeira01}</div>
+                                                Bandeirinha 01
+                                            </div>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item
+                                            as="li"
+                                            className="d-flex justify-content-between align-items-start text-center"
+                                        >
+                                            <div className="ms-auto me-auto">
+                                                <div className="fw-bold">{referee.bandeira02}</div>
+                                                Bandeirinha 02
+                                            </div>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item
+                                            as="li"
+                                            className="d-flex justify-content-between align-items-start text-center"
+                                        >
+                                            <div className="ms-auto me-auto">
+                                                <div className="fw-bold">{referee.auxarbitro01}</div>
+                                                4° Árbitro
+                                            </div>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item
+                                            as="li"
+                                            className="d-flex justify-content-between align-items-start text-center"
+                                        >
+                                            <div className="ms-auto me-auto">
+                                                <div className="fw-bold">{referee.auxarbitro02}</div>
+                                                5° Árbitro
+                                            </div>
+                                        </ListGroup.Item>
+                                    </ListGroup>
                                     <div className="d-grid gap-2">
-                                        <ShowCanvasForTeams
-                                            idx={idx}
-                                            nome={team.nome}
-                                            corprim={team.corprim}
-                                            corsec={team.corsec}
-                                            mascote={team.mascote}
-                                            estadio={team.estadio}
-                                            fundacao={team.fundacao}
-                                            cidade={team.formGridCity}
-                                            estado={team.formGridState}
-                                            presidente={team.presidente}
-                                        />
+                                        <Button variant="outline-primary">
+                                            <NavLink to={"/referees/" + idx} > <FaEdit /></NavLink>
+                                        </Button>
                                         <Button variant='outline-danger' key={idx} onClick={() => excluir(idx)} >
                                             <FaRegTrashAlt title="Excluir" />
                                         </Button>
@@ -62,11 +100,11 @@ const Teams = () => {
                     ))}
                 </Row>
                 <div className='text-center' position="relative">
-                    <Link to="/teams/create" className=" btn btn-secondary mb-4 " ><FaPlus /> Adicionar time</Link>
+                    <Link to="/referees/create" className=" btn btn-secondary mb-4 " ><FaPlus /> Adicionar equipe de arbitragem</Link>
                 </div>
             </Box>
         </>
     )
 }
 
-export default Teams
+export default Referees;

@@ -13,11 +13,11 @@ const RefereesValidator = {
     required: mensagens.required,
     maxLength: { value: 50, message: mensagens.maxLength },
   },
-  auxiliararbitro01: {
+  auxarbitro01: {
     required: mensagens.required,
     maxLength: { value: 50, message: mensagens.maxLength },
   },
-  auxiliararbitro02: {
+  auxarbitro02: {
     required: mensagens.required,
     maxLength: { value: 50, message: mensagens.maxLength },
   },

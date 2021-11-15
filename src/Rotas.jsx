@@ -8,6 +8,10 @@ import Players from './pages/players/Players'
 import PlayersForm from './pages/players/PlayersForm'
 import Coaches from './pages/coaches/Coaches'
 import CoachesForm from './pages/coaches/CoachesForm'
+import Referees from './pages/referees/Referees'
+import RefereesForm from './pages/referees/RefereesForm'
+import Games from './pages/games/Games'
+import GamesForm from './pages/games/GamesForm'
 
 const Rotas = () => {
     return (
@@ -23,12 +27,12 @@ const Rotas = () => {
                 <Route exact path="/coaches" component={Coaches} />
                 <Route exact path="/coaches/create" component={CoachesForm} />
                 <Route exact path="/coaches/:id" component={CoachesForm} />
-                {/*<Route exact path="/referees" component={Referees} />
+                <Route exact path="/referees" component={Referees} />
                 <Route exact path="/referees/create" component={RefereesForm} />
                 <Route exact path="/referees/:id" component={RefereesForm} />
                 <Route exact path="/games" component={Games} />
                 <Route exact path="/games/create" component={GamesForm} />
-                <Route exact path="/games/:id" component={GamesForm} /> */}
+                <Route exact path="/games/:id" component={GamesForm} /> 
             </Switch>
         </Container>
     )

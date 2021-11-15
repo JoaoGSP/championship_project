@@ -5,10 +5,10 @@ import { FaArrowLeft, FaCheck } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { mask, unMask } from 'remask'
 import Box from '../../components/Box'
-import validador from '../../validators/TeamsValidator'
-import TeamsService from '../../services/teams/TeamsService'
+import validador from '../../validators/GamesValidator'
+import GamesService from '../../services/games/GamesService'
 
-const TeamsForm = (props) => {
+const GamesForm = (props) => {
 
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
@@ -16,17 +16,17 @@ const TeamsForm = (props) => {
     useEffect(() => {
         const id = props.match.params.id
         if (id) {
-            const team = TeamsService.get(id)
-            for (let field in team) {
-                setValue(field, team[field])
+            const game = GamesService.get(id)
+            for (let field in game) {
+                setValue(field, game[field])
             }
         }
     }, [props, setValue])
 
     function sendData(data) {
         const id = props.match.params.id
-        id ? TeamsService.update(data, id) : TeamsService.create(data)
-        props.history.push('/teams')
+        id ? GamesService.update(data, id) : GamesService.create(data)
+        props.history.push('/games')
     }
 
     function handleChange(event) {
@@ -41,42 +41,34 @@ const TeamsForm = (props) => {
 
     return (
         <>
-            <Box title="Cadastrar/Editar time">
+            <Box title="Cadastrar/Editar Jogos">
                 <Form>
-                    <Form.Group as={Row} className="mb-3" controlId="nome">
-                        <Form.Label column sm={2}>Nome: </Form.Label>
+                    <Form.Group as={Row} className="mb-3" controlId="timecasa">
+                        <Form.Label column sm={2}>Time Mandante: </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="text" {...register("nome", validador.nome)} />
-                            {errors.nome && <span className="text-danger">{errors.nome.message}</span>}
+                            <Form.Control type="text" {...register("timecasa", validador.timecasa)} />
+                            {errors.timecasa && <span className="text-danger">{errors.timecasa.message}</span>}
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="corprim">
-                        <Form.Label column xs={2}>Cor Primária: </Form.Label>
-                        <Form.Control
-                            xs="auto"
-                            type="color"
-                            defaultValue="#000000"
-                            {...register("corprim", validador.corprim)}
-                            //onChange={handleChange}
-                        />
-                        {errors.corprim && <span className="text-danger">{errors.corprim.message}</span>}
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3" ontrolId="corsec">
-                        <Form.Label column xs={2}>Cor Secundária: </Form.Label>
-                        <Form.Control
-                            xs="auto"
-                            type="color"
-                            defaultValue="#FFFFFF"
-                            {...register("corsec", validador.corsec)}
-                            //onChange={handleChange}
-                        />
-                        {errors.corsec && <span className="text-danger">{errors.corsec.message}</span>}
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="mascote">
-                        <Form.Label column sm={2}>Mascote: </Form.Label>
+                    <Form.Group as={Row} className="mb-3" controlId="timevisitante">
+                        <Form.Label column sm={2}>Time Visitante: </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="text" {...register("mascote", validador.mascote)} />
-                            {errors.mascote && <span className="text-danger">{errors.mascote.message}</span>}
+                            <Form.Control type="text" {...register("timevisitante", validador.timevisitante)} />
+                            {errors.timevisitante && <span className="text-danger">{errors.timevisitante.message}</span>}
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="horario">
+                        <Form.Label column sm={2}>Horário: </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="text" {...register("horario", validador.horario)} mask="99:99"  onChange={handleChange}/>
+                            {errors.horario && <span className="text-danger">{errors.horario.message}</span>}
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="date">
+                        <Form.Label column sm={2}>Data: </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="text" {...register("date", validador.date)} mask="99/99/9999" onChange={handleChange} />
+                            {errors.date && <span className="text-danger">{errors.date.message}</span>}
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="estadio">
@@ -86,67 +78,16 @@ const TeamsForm = (props) => {
                             {errors.estadio && <span className="text-danger">{errors.estadio.message}</span>}
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="fundacao">
-                        <Form.Label column sm={2}>Fundação: </Form.Label>
+                    <Form.Group as={Row} className="mb-3" controlId="arbitragem">
+                        <Form.Label column sm={2}>Equipe de Arbitragem: </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="text" {...register("fundacao")} mask="99/99/9999" onChange={handleChange} />
-                        </Col>
-                    </Form.Group>
-                    <div>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridCity">
-                                <Form.Label>Cidade: </Form.Label>
-                                <Form.Control 
-                                xs="auto"
-                                type="text"
-                                {...register("formGridCity", validador.localizacao)}
-                                />
-                                {errors.localizacao && <span className="text-danger">{errors.localizacao.message}</span>}
-                            </Form.Group>
-
-                            <Form.Group as={Col} controlId="formGridState">
-                                <Form.Label>Estado: </Form.Label>
-                                    <Form.Select  {...register("formGridState")} >
-                                    <option value="Acre">Acre</option>
-                                    <option value="Alagoas">Alagoas</option>
-                                    <option value="Amapá">Amapá</option>
-                                    <option value="Amazonas">Amazonas</option>
-                                    <option value="Bahia">Bahia</option>
-                                    <option value="Ceará">Ceará</option>
-                                    <option value="Distrito Federal">Distrito Federal</option>
-                                    <option value="Espírito Santo">Espírito Santo</option>
-                                    <option value="Goiás">Goiás</option>
-                                    <option value="Maranhão">Maranhão</option>
-                                    <option value="Mato Grosso">Mato Grosso</option>
-                                    <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
-                                    <option value="Minas Gerais">Minas Gerais</option>
-                                    <option value="Pará">Pará</option>
-                                    <option value="Paraíba">Paraíba</option>
-                                    <option value="Paraná">Paraná</option>
-                                    <option value="Pernambuco">Pernambuco</option>
-                                    <option value="Piauí">Piauí</option>
-                                    <option value="Rio de Janeiro">Rio de Janeiro</option>
-                                    <option value="Rio Grande do Norte">Rio Grande do Norte</option>
-                                    <option value="Rio Grande do Sul">Rio Grande do Sul</option>
-                                    <option value="Rondônia">Rondônia</option>
-                                    <option value="Roraima">Roraima</option>
-                                    <option value="Santa Catarina">Santa Catarina</option>
-                                    <option value="São Paulo">São Paulo</option>
-                                    <option value="Sergipe">Sergipe</option>
-                                    <option value="Tocantins">Tocantins</option>
-                                </Form.Select>
-                            </Form.Group>
-                        </Row>
-                    </div>
-                    <Form.Group as={Row} className="mb-3" controlId="presidente">
-                        <Form.Label column sm={2}>Presidente: </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control type="text" {...register("presidente")} />
+                            <Form.Control type="text" {...register("arbitragem", validador.arbitragem)} />
+                            {errors.arbitragem && <span className="text-danger">{errors.arbitragem.message}</span>}
                         </Col>
                     </Form.Group>
                     <div className="text-center">
                         <Button variant="success" onClick={handleSubmit(sendData)}><FaCheck /> Salvar</Button>
-                        <Link className="btn btn-danger" to="/teams"><FaArrowLeft /> Voltar</Link>
+                        <Link className="btn btn-danger" to="/games"><FaArrowLeft /> Voltar</Link>
 
                     </div>
                 </Form>
@@ -155,4 +96,4 @@ const TeamsForm = (props) => {
     )
 }
 
-export default TeamsForm;
+export default GamesForm;

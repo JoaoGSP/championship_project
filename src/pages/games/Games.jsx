@@ -1,72 +1,79 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Col, Row} from 'react-bootstrap'
-import { FaPlus, FaRegTrashAlt } from 'react-icons/fa'
+import { Table } from 'react-bootstrap'
+import { FaEdit,  FaPlus, FaRegTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Box from '../../components/Box'
-import ShowCanvasForTeams from '../../components/ShowCanvasForTeams'
-import TeamsService from '../../services/teams/TeamsService'
-import Button from 'react-bootstrap/Button'
-import image from '../../img/cbf-1.svg'
+import ShowInfoForGames from '../../components/ShowInfoForGames'
+import GamesService from '../../services/games/GamesService'
 
 
-const Teams = () => {
+const Games = () => {
 
-    const [teams, setTeams] = useState([])
+    const [games, setGames] = useState([])
+
+    const FancyLink = React.forwardRef(({ navigate, ...props }, ref) => {
+        return (
+          <a ref={ref} {...props}><FaEdit title="Editar" /> {props.children}</a>
+        )
+      })
+      
+      
 
     useEffect(() => {
-        const teams = TeamsService.getAll()
-        setTeams(teams)
+        const games = GamesService.getAll()
+        setGames(games)
     }, [])
 
-    function excluir(idx) {
+    function trash(idx) {
         if (window.confirm('Deseja realmente excluir o registro?')) {
-            TeamsService.delete(idx)
-            setTeams(TeamsService.getAll())
+            GamesService.delete(idx)
+            setGames(GamesService.getAll())
         }
     }
 
-
-
     return (
         <>
-            <Box title="Times" >
-                <Row xs={1} md={4} className="g-4">
-                    {teams.map((team, idx) => (
-
-                        <Col>
-                            <Card>
-                                <Card.Img variant="top" height={150} src={image} />
-                                <Card.Body>
-                                    <Card.Title className='text-center'>{team.nome}</Card.Title>
-                                    <div className="d-grid gap-2">
-                                        <ShowCanvasForTeams
-                                            idx={idx}
-                                            nome={team.nome}
-                                            corprim={team.corprim}
-                                            corsec={team.corsec}
-                                            mascote={team.mascote}
-                                            estadio={team.estadio}
-                                            fundacao={team.fundacao}
-                                            cidade={team.formGridCity}
-                                            estado={team.formGridState}
-                                            presidente={team.presidente}
-                                        />
-                                        <Button variant='outline-danger' key={idx} onClick={() => excluir(idx)} >
-                                            <FaRegTrashAlt title="Excluir" />
-                                        </Button>
+            <Box title="Partidas" >
+                <Table striped bordered hover variant="dark" >
+                    <thead className="text-center">
+                        <tr>
+                            <th>Partida N°</th>
+                            <th>Mandantes</th>
+                            <th>Visitantes</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-center">
+                        {games.map((game, idx) => (
+                            <tr key={idx}>
+                                <td>{idx + 1}</td>
+                                <td>{game.timecasa}</td>
+                                <td>{game.timevisitante}</td>
+                                <td>
+                                    <div className="row row-cols-3">
+                                    <ShowInfoForGames 
+                                    timecasa={game.timecasa}
+                                    timevisitante={game.timevisitante}
+                                    horario={game.horario}
+                                    date={game.date}
+                                    estadio={game.estadio}
+                                    arbitragem={game.arbitragem}
+                                    />
+                                    <Link to={'/games/' + idx} component={FancyLink} />
+                                    <FaRegTrashAlt className="text-danger" onClick={() => trash(idx)} title="Excluir" />
                                     </div>
+                                </td>
+                            </tr>
 
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    ))}
-                </Row>
+                        ))}
+                    </tbody>
+                </Table>
                 <div className='text-center' position="relative">
-                    <Link to="/teams/create" className=" btn btn-secondary mb-4 " ><FaPlus /> Adicionar time</Link>
+                    <Link to="/games/create" className=" btn btn-secondary mb-4 " ><FaPlus /> Adicionar partida</Link>
                 </div>
             </Box>
         </>
     )
 }
 
-export default Teams
+export default Games

@@ -1,22 +1,19 @@
-import mensagens from "./mensagens";
 import messages from "./messages";
 
-const AlunoValidator = {
+const GamesValidator = {
   timecasa: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength }
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength }
   },
   timevisitante: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength }
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength }
   },
   horario: {
-    required: mensagens.required,
-    maxLength: { value: 4, message: mensagens.maxLength }
+    required: messages.required
   },
   data: {
-    required: messages.required,
-    maxLength: { value: 8, message: messages.maxLength }
+    required: messages.required
   },
   estadio: {
     required: messages.required
@@ -28,4 +25,4 @@ const AlunoValidator = {
     required: messages.required
   },
 };
-export default AlunoValidator;
+export default GamesValidator;
