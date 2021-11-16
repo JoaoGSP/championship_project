@@ -6,7 +6,7 @@ import Box from '../../components/Box'
 import ShowCanvasForPlayers from '../../components/ShowCanvasForPlayers'
 import PlayersService from '../../services/players/PlayersService'
 import Button from 'react-bootstrap/Button'
-import image from '../../img/Soccer_player_dribbling_silhouette.svg'
+import image from '../../img/jogadores.jpg'
 
 
 const Players = () => {
@@ -35,7 +35,7 @@ const Players = () => {
 
                         <Col>
                             <Card>
-                                <Card.Img variant="top" height={175} src={image} />
+                                <Card.Img variant="top" height={200} src={image} />
                                 <Card.Body>
                                     <Card.Title className='text-center'>{player.nome}</Card.Title>
                                     <div className="d-grid gap-2">

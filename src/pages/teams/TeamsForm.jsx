@@ -57,7 +57,7 @@ const TeamsForm = (props) => {
                             type="color"
                             defaultValue="#000000"
                             {...register("corprim", validador.corprim)}
-                            //onChange={handleChange}
+                        //onChange={handleChange}
                         />
                         {errors.corprim && <span className="text-danger">{errors.corprim.message}</span>}
                     </Form.Group>
@@ -68,7 +68,7 @@ const TeamsForm = (props) => {
                             type="color"
                             defaultValue="#FFFFFF"
                             {...register("corsec", validador.corsec)}
-                            //onChange={handleChange}
+                        //onChange={handleChange}
                         />
                         {errors.corsec && <span className="text-danger">{errors.corsec.message}</span>}
                     </Form.Group>
@@ -96,17 +96,17 @@ const TeamsForm = (props) => {
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridCity">
                                 <Form.Label>Cidade: </Form.Label>
-                                <Form.Control 
-                                xs="auto"
-                                type="text"
-                                {...register("formGridCity", validador.localizacao)}
+                                <Form.Control
+                                    xs="auto"
+                                    type="text"
+                                    {...register("formGridCity", validador.localizacao)}
                                 />
                                 {errors.localizacao && <span className="text-danger">{errors.localizacao.message}</span>}
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridState">
                                 <Form.Label>Estado: </Form.Label>
-                                    <Form.Select  {...register("formGridState")} >
+                                <Form.Select  {...register("formGridState")} >
                                     <option value="Acre">Acre</option>
                                     <option value="Alagoas">Alagoas</option>
                                     <option value="Amapá">Amapá</option>
@@ -144,6 +144,10 @@ const TeamsForm = (props) => {
                             <Form.Control type="text" {...register("presidente")} />
                         </Col>
                     </Form.Group>
+                    {/* <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>Default file input example</Form.Label>
+                        <Form.Control type="file" {...register('image')}/>
+                    </Form.Group> */}
                     <div className="text-center">
                         <Button variant="success" onClick={handleSubmit(sendData)}><FaCheck /> Salvar</Button>
                         <Link className="btn btn-danger" to="/teams"><FaArrowLeft /> Voltar</Link>

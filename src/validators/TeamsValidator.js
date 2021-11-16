@@ -1,37 +1,37 @@
-import mensagens from "./mensagens";
+import messages from "./messages";
 
 const TeamsValidator = {
   nome: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   corprim: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   corsec: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   mascote: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   estadio: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   fundacao: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   localizacao: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength }
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength }
   },
   presidente: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
 };
 

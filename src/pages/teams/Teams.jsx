@@ -6,8 +6,7 @@ import Box from '../../components/Box'
 import ShowCanvasForTeams from '../../components/ShowCanvasForTeams'
 import TeamsService from '../../services/teams/TeamsService'
 import Button from 'react-bootstrap/Button'
-import image from '../../img/cbf-1.svg'
-
+import imagem from '../../img/times.jpg'
 
 const Teams = () => {
 
@@ -32,10 +31,9 @@ const Teams = () => {
             <Box title="Times" >
                 <Row xs={1} md={4} className="g-4">
                     {teams.map((team, idx) => (
-
                         <Col>
                             <Card>
-                                <Card.Img variant="top" height={150} src={image} />
+                                <Card.Img variant="top" height={175} src={imagem} />
                                 <Card.Body>
                                     <Card.Title className='text-center'>{team.nome}</Card.Title>
                                     <div className="d-grid gap-2">

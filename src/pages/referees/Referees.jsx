@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Col, ListGroup, Row } from 'react-bootstrap'
+import { Accordion, Card, Col, ListGroup, Row } from 'react-bootstrap'
 import { FaEdit, FaPlus, FaRegTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Box from '../../components/Box'
 import Button from 'react-bootstrap/Button'
-import image from '../../img/apito.png'
+import image from '../../img/conjunto-de-icones-de-colecao-de-gesto-de-arbitro-de-futebol-em-ilustracao-plana-dos-desenhos-animados_201904-144.jpg'
 import RefereesService from '../../services/referees/RefereesService'
 import { NavLink } from 'react-router-dom'
 
@@ -35,56 +35,63 @@ const Referees = () => {
 
                         <Col>
                             <Card>
-                                <Card.Img variant="top" height={170} src={image} />
+                                <Card.Img variant="top" height={200} src={image} />
                                 <Card.Body>
-                                    <Card.Title className='text-center'>{`Equipe de Arbitragem ` + (idx+1)}</Card.Title>
-                                    <ListGroup as="ol">
-                                        <ListGroup.Item
-                                            as="li"
-                                            className="d-flex justify-content-between align-items-start text-center"
-                                        >
-                                            <div className="ms-auto me-auto">
-                                                <div className="fw-bold">{referee.arbitro}</div>
-                                                Árbritro Principal
-                                            </div>
-                                        </ListGroup.Item>
-                                        <ListGroup.Item
-                                            as="li"
-                                            className="d-flex justify-content-between align-items-start text-center"
-                                        >
-                                            <div className="ms-auto me-auto">
-                                                <div className="fw-bold ">{referee.bandeira01}</div>
-                                                Bandeirinha 01
-                                            </div>
-                                        </ListGroup.Item>
-                                        <ListGroup.Item
-                                            as="li"
-                                            className="d-flex justify-content-between align-items-start text-center"
-                                        >
-                                            <div className="ms-auto me-auto">
-                                                <div className="fw-bold">{referee.bandeira02}</div>
-                                                Bandeirinha 02
-                                            </div>
-                                        </ListGroup.Item>
-                                        <ListGroup.Item
-                                            as="li"
-                                            className="d-flex justify-content-between align-items-start text-center"
-                                        >
-                                            <div className="ms-auto me-auto">
-                                                <div className="fw-bold">{referee.auxarbitro01}</div>
-                                                4° Árbitro
-                                            </div>
-                                        </ListGroup.Item>
-                                        <ListGroup.Item
-                                            as="li"
-                                            className="d-flex justify-content-between align-items-start text-center"
-                                        >
-                                            <div className="ms-auto me-auto">
-                                                <div className="fw-bold">{referee.auxarbitro02}</div>
-                                                5° Árbitro
-                                            </div>
-                                        </ListGroup.Item>
-                                    </ListGroup>
+                                    <Card.Title className='text-center'>{`Equipe de Arbitragem ` + (idx + 1)}</Card.Title>
+                                    <Accordion>
+                                        <Accordion.Item eventKey="0">
+                                            <Accordion.Header >Informações</Accordion.Header>
+                                            <Accordion.Body>
+                                                <ListGroup as="ol">
+                                                    <ListGroup.Item
+                                                        as="li"
+                                                        className="d-flex justify-content-between align-items-start text-center"
+                                                    >
+                                                        <div className="ms-auto me-auto">
+                                                            <div className="fw-bold">{referee.arbitro}</div>
+                                                            Árbritro Principal
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item
+                                                        as="li"
+                                                        className="d-flex justify-content-between align-items-start text-center"
+                                                    >
+                                                        <div className="ms-auto me-auto">
+                                                            <div className="fw-bold ">{referee.bandeira01}</div>
+                                                            Bandeirinha 01
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item
+                                                        as="li"
+                                                        className="d-flex justify-content-between align-items-start text-center"
+                                                    >
+                                                        <div className="ms-auto me-auto">
+                                                            <div className="fw-bold">{referee.bandeira02}</div>
+                                                            Bandeirinha 02
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item
+                                                        as="li"
+                                                        className="d-flex justify-content-between align-items-start text-center"
+                                                    >
+                                                        <div className="ms-auto me-auto">
+                                                            <div className="fw-bold">{referee.auxarbitro01}</div>
+                                                            4° Árbitro
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item
+                                                        as="li"
+                                                        className="d-flex justify-content-between align-items-start text-center"
+                                                    >
+                                                        <div className="ms-auto me-auto">
+                                                            <div className="fw-bold">{referee.auxarbitro02}</div>
+                                                            5° Árbitro
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                </ListGroup>
+                                            </Accordion.Body>
+                                        </Accordion.Item>
+                                    </Accordion>
                                     <div className="d-grid gap-2">
                                         <Button variant="outline-primary">
                                             <NavLink to={"/referees/" + idx} > <FaEdit /></NavLink>

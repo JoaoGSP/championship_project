@@ -1,25 +1,25 @@
-import mensagens from "./mensagens";
+import messages from "./messages";
 
 const RefereesValidator = {
   arbitroprincipal: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   bandeira01: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   bandeira02: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   auxarbitro01: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
   auxarbitro02: {
-    required: mensagens.required,
-    maxLength: { value: 50, message: mensagens.maxLength },
+    required: messages.required,
+    maxLength: { value: 50, message: messages.maxLength },
   },
 };
 

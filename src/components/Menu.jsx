@@ -1,13 +1,14 @@
-import React from 'react'
-import { Button, Col, Container, Form, FormControl, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, Col, Container, Form, FormControl, ListGroup, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const Menu = () => {
+
     return (
 
-        <Navbar bg="dark" expand={false}>
+        <Navbar collapseOnSelect className='navbar navbar-dark bg-dark' expand={false}>
             <Container fluid>
-                <Navbar.Brand  className='text-light text-center' href="/">Campeonato</Navbar.Brand>
+                <Navbar.Brand className='text-light text-center' href="/">Campeonato</Navbar.Brand>
                 <Navbar.Toggle className='btn btn-outline-dark' aria-controls="offcanvasNavbar" />
                 <Navbar.Offcanvas
                     id="offcanvasNavbar"
@@ -17,31 +18,38 @@ const Menu = () => {
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title id="offcanvasNavbarLabel">Campeonato</Offcanvas.Title>
                     </Offcanvas.Header>
-                    <Offcanvas.Body>
-                        <Nav className="justify-content-end flex-grow-1 pe-3">
-                            <Link className="nav-link" to="/teams">Times</Link>
-                            <Link className="nav-link" to="/players">Jogadores</Link>
-                            <Link className="nav-link" to="/coaches">Comissão Técnica</Link>
-                            <Link className="nav-link" to="/referees">Arbitragem</Link>
-                            <Link className="nav-link" to="/games">Jogos</Link>
+                    <Offcanvas.Body >
+                        <Nav className="navbar bg-light">
+                            <Nav.Item>
+                                <Nav.Link eventKey="2" as={Link} to="/teams">
+                                Times
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="1" as={Link} to="/players">
+                                Jogadores
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="3" as={Link} to="/coaches">
+                                Comissão Técnica
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="4" as={Link} to="/referees">
+                                Arbitragem
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="5" as={Link} to="/games">
+                                Jogos
+                                </Nav.Link>
+                            </Nav.Item>
                         </Nav>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
             </Container>
         </Navbar>
-
-        // <Navbar bg="dark" variant="dark">
-        //     <Container fluid>
-        //         <Navbar.Brand href="/">Campeonato</Navbar.Brand>
-        //         <Nav className="me-auto">
-        //             <Link className="nav-link" to="/teams">Times</Link>
-        //             <Link className="nav-link" to="/players">Jogadores</Link>
-        //             <Link className="nav-link" to="/coaches">Comissão Técnica</Link>
-        //             <Link className="nav-link" to="/referees">Arbitragem</Link>
-        //             <Link className="nav-link" to="/games">Jogos</Link>
-        //         </Nav>
-        //     </Container>
-        // </Navbar>
     )
 }
 

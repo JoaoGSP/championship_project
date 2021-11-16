@@ -4,7 +4,7 @@ import { FaEdit, FaPlus, FaRegTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Box from '../../components/Box'
 import Button from 'react-bootstrap/Button'
-import image from '../../img/pngegg.png'
+import image from '../../img/tecnicos.jpg'
 import CoachesService from '../../services/coaches/CoachesService'
 import { NavLink } from 'react-router-dom'
 
